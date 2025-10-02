@@ -41,9 +41,9 @@ export default function LoginForm() {
       </Button>
 
       <p className="text-sm text-center mt-2">
-        Não tem conta?{" "}
+        Não tem conta? cadastre-se{" "}
         <a href="/cadastro" className="underline font-semibold">
-          cadastre-se aqui!
+           aqui!
         </a>
       </p>
     </form>

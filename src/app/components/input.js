@@ -7,6 +7,7 @@ export default function Input({
   type = "text",
   value,
   onChange,
+  className = "",
   placeholder = "",
   required = false,
   autoComplete = "off",
@@ -18,7 +19,7 @@ export default function Input({
   return (
     <div className="mb-4">
       {label && (
-        <label htmlFor={inputId} className="block mb-1 text-sm font-medium text-gray-700">
+        <label htmlFor={inputId} className="block mb-1 text-sm font-medium text-[rgb(227,227,227)]">
           {label}
         </label>
       )}
@@ -32,7 +33,7 @@ export default function Input({
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
-        className={`w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none transition ${
+        className={`w-full p-2 border rounded-md bg-[rgb(227,227,227)] text-[rgb(0, 0, 0)] focus:ring-2 focus:ring-blue-500 focus:outline-none transition ${
           error ? "border-red-500" : "border-gray-300"
         }`}
       />
