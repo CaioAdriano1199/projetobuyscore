@@ -16,7 +16,7 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      <h2 className="text-xl font-semibold text-center mb-2">Login</h2>
+      <h1 className="text-3xl font-semibold text-center mb-2 text-[rgb(227,227,227)]">Login</h1>
 
       <Input
         label="CNPJ"
@@ -40,7 +40,7 @@ export default function LoginForm() {
         Login
       </Button>
 
-      <p className="text-sm text-center mt-2">
+      <p className="text-sm text-center mt-2 text-[rgb(227,227,227)]">
         Não tem conta? cadastre-se{" "}
         <a href="/cadastro" className="underline font-semibold">
            aqui!
