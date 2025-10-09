@@ -14,7 +14,7 @@ export default function Cadastro() {
   const [cnpj, setCnpj] = useState("");
   const [cep, setCep] = useState("");
   const [logradouro, setLogradouro] = useState("");
-  const [numero, setNumero] = useState(""); 
+  const [numero, setNumero] = useState("");
   const [cidade, setCidade] = useState("");
   const [estado, setEstado] = useState("");
   const [senha, setSenha] = useState("");
@@ -24,24 +24,20 @@ export default function Cadastro() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      
-      {/* Logo */}
+
       <Image src="/logo.png" alt="Logo" width={80} height={80} className="mb-4" />
-
-      {/* Título */}
       <h1 className="text-2xl font-bold text-blue-900 mb-6">Cadastro Lojista</h1>
-
-      {/* Card de cadastro */}
       <Card className="rounded-2xl shadow-lg p-8 w-full max-w-lg mb-[5%]">
         <h1 className="text-3xl font-semibold text-center mb-2 text-[rgb(227,227,227)] mb-[5%]">Crie sua conta</h1>
 
-        <form className="grid grid-cols-2 gap-4">
-          {/* Campos normais */}
+        <form className="grid grid-cols-4 gap-4">
+
           <Input
             label="Razão Social"
             type="text"
+            colSpan="col-span-2"
             value={razaoSocial}
-            className="p-2 rounded text-black col-span-2"
+            className="p-2 rounded text-black"
             onChange={(e) => setRazaoSocial(e.target.value)}
             required
           />
@@ -50,15 +46,17 @@ export default function Cadastro() {
             label="Nicho da Loja"
             type="text"
             value={nichoLoja}
-            className="p-2 rounded text-black col-span-2"
+            colSpan="col-span-2"
+            className="p-2 rounded text-black"
             onChange={(e) => setNichoLoja(e.target.value)}
             required
-            />
+          />
 
-            <Input
+          <Input
             label="Email"
             type="email"
             value={email}
+            colSpan="col-span-2"
             className="p-2 rounded text-black"
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -67,14 +65,16 @@ export default function Cadastro() {
             label="Celular"
             type="tel"
             value={celular}
+            colSpan="col-span-2"
             className="p-2 rounded text-black"
             onChange={(e) => setCelular(e.target.value)}
             required
           />
           <Input
             label="CNPJ"
-            type="text" 
+            type="text"
             value={cnpj}
+            colSpan="col-span-2"
             className="p-2 rounded text-black"
             onChange={(e) => setCnpj(e.target.value)}
             required
@@ -83,14 +83,17 @@ export default function Cadastro() {
             label="CEP"
             type="text"
             value={cep}
+            colSpan="col-span-2"
             className="p-2 rounded text-black"
             onChange={(e) => setCep(e.target.value)}
             required
           />
+
           <Input
             label="Logradouro"
             type="text"
             value={logradouro}
+            colSpan="col-span-3"
             className="p-2 rounded text-black col-span-2"
             onChange={(e) => setLogradouro(e.target.value)}
             required
@@ -98,15 +101,18 @@ export default function Cadastro() {
           <Input
             label="Número"
             type="text"
-            value={numero}  
-            className="p-2 rounded text-black"
+            value={numero}
+            colSpan="col-span-1"
+            className="p-2 rounded text-black col-span-1"
             onChange={(e) => setNumero(e.target.value)}
             required
           />
+
           <Input
             label="Cidade"
-            type="text" 
+            type="text"
             value={cidade}
+            colSpan="col-span-2"
             className="p-2 rounded text-black"
             onChange={(e) => setCidade(e.target.value)}
             required
@@ -115,6 +121,7 @@ export default function Cadastro() {
             label="Estado"
             type="text"
             value={estado}
+            colSpan="col-span-2"
             className="p-2 rounded text-black"
             onChange={(e) => setEstado(e.target.value)}
             required
@@ -123,6 +130,7 @@ export default function Cadastro() {
             label="Senha"
             type="password"
             value={senha}
+            colSpan="col-span-2"
             className="p-2 rounded text-black"
             onChange={(e) => setSenha(e.target.value)}
             required
@@ -130,15 +138,15 @@ export default function Cadastro() {
           <Input
             label="Confirmar Senha"
             type="password"
+            colSpan=" col-span-2"
             value={confirmarSenha}
             className="p-2 rounded text-black"
             onChange={(e) => setConfirmarSenha(e.target.value)}
             required
           />
 
-          {/* Checkbox */}
-          <label className="flex items-center gap-2 col-span-2 mt-2">
-            <Input
+          <label className="flex items-center gap-2 text-[rgb(227,227,227)] col-span-4 mt-2">
+            <input
               type="checkbox"
               checked={isFranqueado}
               onChange={() => setIsFranqueado(!isFranqueado)}
@@ -147,39 +155,39 @@ export default function Cadastro() {
             É um franqueado?
           </label>
 
-          {/* Campos extras se franqueado */}
           {isFranqueado && (
             <>
-            <Input
+              <Input
                 label="CNPJ da Matriz"
                 type="text"
                 value={cnpjMatriz}
+                colSpan="col-span-2"
                 className="p-2 rounded text-black col-span-1"
                 onChange={(e) => setCnpjMatriz(e.target.value)}
-                />
-            <Input
+              />
+              <Input
                 label="Código de verificação"
                 type="text"
                 value={codigoVerificacao}
+                colSpan="col-span-2"
                 className="p-2 rounded text-black col-span-1"
                 onChange={(e) => setCodigoVerificacao(e.target.value)}
-                />
-              <button
-                type="button"
-                className="col-span-2 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded"
+              />
+              <Button
+                type="submit" variant="primary"
+                className="col-span-4"
               >
                 Enviar código
-              </button>
+              </Button>
             </>
           )}
 
-          {/* Botão principal */}
-          <button
-            type="submit"
-            className="col-span-2 bg-gray-900 hover:bg-gray-800 text-white p-2 rounded mt-4"
+          <Button
+            type="submit" variant="primary"
+            className="col-span-4"
           >
             Cadastrar
-          </button>
+          </Button>
         </form>
       </Card>
     </div>

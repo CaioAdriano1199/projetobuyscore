@@ -6,6 +6,7 @@ export default function Input({
   name,
   type = "text",
   value,
+  colSpan = "col-span-1",
   onChange,
   className = "",
   placeholder = "",
@@ -16,13 +17,16 @@ export default function Input({
   // gera um id a partir do label/name se não for passado
   const inputId = id || name || (label ? label.toLowerCase().replace(/\s+/g, "-") : undefined);
 
+
   return (
-    <div className="mb-4">
+    <div className={`mb-4 ${colSpan}`}>
       {label && (
         <label htmlFor={inputId} className="block mb-1 text-sm font-medium text-[rgb(227,227,227)]">
           {label}
         </label>
       )}
+
+
 
       <input
         id={inputId}
@@ -33,9 +37,8 @@ export default function Input({
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
-        className={`w-full p-2 border rounded-md bg-[rgb(227,227,227)] text-[rgb(0, 0, 0)] focus:ring-2 focus:ring-blue-500 focus:outline-none transition ${
-          error ? "border-red-500" : "border-gray-300"
-        }`}
+        className={`w-full p-2 border rounded-md bg-[rgb(227,227,227)] text-[rgb(0,0,0)] focus:ring-2 focus:ring-blue-500 focus:outline-none transition ${error ? "border-red-500" : "border-gray-300"}`}
+
       />
 
       {error && <p className="mt-1 text-sm text-red-600">{error}</p>}

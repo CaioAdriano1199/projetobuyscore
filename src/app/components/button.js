@@ -4,7 +4,7 @@ export default function Button({
   children,
   type = "button",
   onClick,
-  variant = "primary", // estilos: primary, secondary, outline
+  variant = "primary",
   disabled = false,
   loading = false,
   className = "",

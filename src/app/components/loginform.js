@@ -5,12 +5,12 @@ import Input from "./input";
 import Button from "./button";
 
 export default function LoginForm() {
-  const [cnpj, setCnpj] = useState("");
+  const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Tentando logar com:", { cnpj, senha });
+    console.log("Tentando logar com:", { email, senha });
     // Aqui futuramente você chama a API de autenticação
   };
 
@@ -19,11 +19,11 @@ export default function LoginForm() {
       <h1 className="text-3xl font-semibold text-center mb-2 text-[rgb(227,227,227)]">Login</h1>
 
       <Input
-        label="CNPJ"
+        label="Email"
         type="text"
-        value={cnpj}
-        onChange={(e) => setCnpj(e.target.value)}
-        placeholder="Digite seu CNPJ"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Digite seu Email"
         required
       />
 
