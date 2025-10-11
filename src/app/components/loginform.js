@@ -8,10 +8,29 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Tentando logar com:", { email, senha });
-    // Aqui futuramente você chama a API de autenticação
+ try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, senha }),
+      });
+
+      const data = await res.json();
+
+      if (data.sucesso) {
+        setMensagem("Login realizado com sucesso!");
+        console.log("Token:", data.token);
+        localStorage.setItem("token", data.token);
+        // Aqui você pode redirecionar o usuário:
+        // router.push("/dashboard");
+      } else {
+        setMensagem(data.mensagem || "Erro no login");
+      }
+    } catch (error) {
+      setMensagem("Erro ao conectar com o servidor");
+    }
   };
 
   return (
