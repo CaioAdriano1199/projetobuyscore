@@ -1,9 +1,12 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import Input from "../components/input";
-import Button from "../components/button";
-import Card from "../components/card";
+import Input from "../components/input/input";
+import Button from "../components/button/button";
+import Card from "../components/card/card";
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 export default function Cadastro() {
   const [isFranqueado, setIsFranqueado] = useState(false);
@@ -21,6 +24,14 @@ export default function Cadastro() {
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [cnpjMatriz, setCnpjMatriz] = useState("");
   const [codigoVerificacao, setCodigoVerificacao] = useState("");
+  const top100Films = [
+    { label: 'The Shawshank Redemption', year: 1994 },
+    { label: 'The Godfather', year: 1972 },
+    { label: 'The Godfather: Part II', year: 1974 },
+    { label: 'The Dark Knight', year: 2008 },
+    { label: '12 Angry Men', year: 1957 },
+    { label: "Schindler's List", year: 1993 },
+    { label: 'Pulp Fiction', year: 1994 }];
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -30,12 +41,12 @@ export default function Cadastro() {
       <Card className="rounded-2xl shadow-lg p-8 w-full max-w-lg mb-[5%]">
         <h1 className="text-3xl font-semibold text-center mb-2 text-[rgb(227,227,227)] mb-[5%]">Crie sua conta</h1>
 
-        <form className="grid grid-cols-4 gap-4">
+        <form className="grid grid-cols-6 gap-4">
 
           <Input
             label="Razão Social"
             type="text"
-            colSpan="col-span-2"
+            colSpan="col-span-3"
             value={razaoSocial}
             className="p-2 rounded text-black"
             onChange={(e) => setRazaoSocial(e.target.value)}
@@ -46,17 +57,27 @@ export default function Cadastro() {
             label="Nicho da Loja"
             type="text"
             value={nichoLoja}
-            colSpan="col-span-2"
+            colSpan="col-span-3"
             className="p-2 rounded text-black"
             onChange={(e) => setNichoLoja(e.target.value)}
             required
           />
 
+
+          <Autocomplete
+            disablePortal
+            options={top100Films}
+            sx={{ width: 100%Autocomplete }}
+            className="p-2 rounded text-black col-span-3"
+            renderInput={(params) => <TextField {...params} label="Movie" />}
+          />
+          
+
           <Input
             label="Email"
             type="email"
             value={email}
-            colSpan="col-span-2"
+            colSpan="col-span-3"
             className="p-2 rounded text-black"
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -65,7 +86,7 @@ export default function Cadastro() {
             label="Celular"
             type="tel"
             value={celular}
-            colSpan="col-span-2"
+            colSpan="col-span-3"
             className="p-2 rounded text-black"
             onChange={(e) => setCelular(e.target.value)}
             required
@@ -74,7 +95,7 @@ export default function Cadastro() {
             label="CNPJ"
             type="text"
             value={cnpj}
-            colSpan="col-span-2"
+            colSpan="col-span-3"
             className="p-2 rounded text-black"
             onChange={(e) => setCnpj(e.target.value)}
             required
@@ -90,21 +111,22 @@ export default function Cadastro() {
           />
 
           <Input
-            label="Logradouro"
-            type="text"
-            value={logradouro}
-            colSpan="col-span-3"
-            className="p-2 rounded text-black col-span-2"
-            onChange={(e) => setLogradouro(e.target.value)}
-            required
-          />
-          <Input
             label="Número"
             type="text"
             value={numero}
             colSpan="col-span-1"
             className="p-2 rounded text-black col-span-1"
             onChange={(e) => setNumero(e.target.value)}
+            required
+          />
+
+          <Input
+            label="Logradouro"
+            type="text"
+            value={logradouro}
+            colSpan="col-span-3"
+            className="p-2 rounded text-black col-span-2"
+            onChange={(e) => setLogradouro(e.target.value)}
             required
           />
 
@@ -121,7 +143,7 @@ export default function Cadastro() {
             label="Estado"
             type="text"
             value={estado}
-            colSpan="col-span-2"
+            colSpan="col-span-1"
             className="p-2 rounded text-black"
             onChange={(e) => setEstado(e.target.value)}
             required

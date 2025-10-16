@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import Input from "./input";
-import Button from "./button";
+import Input from "../input/input";
+import Button from "../button/button";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [mensagem, setMensagem] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
  try {
-      const res = await fetch("/api/login", {
+      const res = await fetch("/login/api", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, senha }),
@@ -65,6 +66,7 @@ export default function LoginForm() {
            aqui!
         </a>
       </p>
+      <p>{mensagem}</p>
     </form>
   );
 }

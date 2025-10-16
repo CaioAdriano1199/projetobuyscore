@@ -1,7 +1,7 @@
 "use client";
 
-import Card from "../components/card";
-import LoginForm from "../components/loginform";
+import Card from "../components/card/card";
+import LoginForm from "../components/loginform/loginform";
 
 export default function LoginPage() {
   return (
