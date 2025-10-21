@@ -1,5 +1,5 @@
 "use client";
-
+import TextField from '@mui/material/TextField';
 export default function Input({
   label,
   id,
@@ -28,7 +28,7 @@ export default function Input({
 
 
 
-      <input
+      <TextField
         id={inputId}
         name={name}
         type={type}
@@ -37,8 +37,9 @@ export default function Input({
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
+        size="small"
         className={`w-full p-2 border rounded-md bg-[rgb(227,227,227)] text-[rgb(0,0,0)] focus:ring-2 focus:ring-blue-500 focus:outline-none transition ${error ? "border-red-500" : "border-gray-300"}`}
-
+        
       />
 
       {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
