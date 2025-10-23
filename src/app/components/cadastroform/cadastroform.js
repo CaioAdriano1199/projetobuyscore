@@ -4,7 +4,7 @@ import Input from "../input/input";
 import Button from "../button/button";
 import Combobox from "../combobox/combobox";
 import { top100Films, ufs } from "../combobox/comboboxdata";
-import CameraButton from "../CameraButton/CameraButton";
+import CameraButton from "../cameraButton/CameraButton";
 
 export default function CadastroForm() {
     const [isFranqueado, setIsFranqueado] = useState(false);
