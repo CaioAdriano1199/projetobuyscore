@@ -10,7 +10,7 @@ export default function Button({
   className = "",
 }) {
   const baseStyles =
-    "px-4 py-2  transition focus:outline-none focus:ring-2 focus:ring-offset-2";
+    "px-4 py-2  ";
 
 const variants = {
   primary:
@@ -18,7 +18,7 @@ const variants = {
   secondary:
     "bg-[var(--azulclaro)] text-2xl text-[var(--branco)] hover:bg-[var(--branco)] hover:text-[var(--azulclaro)] w-full",
   outline:
-    "border border-gray-300 text-gray-700 hover:bg-gray-100 focus:ring-gray-400",
+    "border border-gray-300 text-gray-700 hover:bg-gray-100",
 };
 
 
