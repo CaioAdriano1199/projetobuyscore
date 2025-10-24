@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Sidemenu from "../components/sidemenu/sidemenu";
 import Telapontuacao from "../components/telapontuacao/telapontuacao";
-import Telapontuacao from "../components/telapontuacao/telapontuacao";
 
 export default function Page() {
   return (
