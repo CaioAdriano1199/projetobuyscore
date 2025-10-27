@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 export default function Combobox({
   label,
   id,
+  labelcolor = "var(--branco)",
   name,
   value,
   onChange,
@@ -23,7 +24,7 @@ export default function Combobox({
       {label && (
         <label
           htmlFor={inputId}
-          className="block mb-1 text-sm font-medium text-[rgb(227,227,227)]"
+          className={`block mb-1 text-sm font-medium text-[${labelcolor}]`}
         >
           {label}
         </label>
@@ -35,7 +36,7 @@ export default function Combobox({
         value={value}
         disableClearable
         options={options}
-        onChange={(event, newValue) => onChange?.(newValue)}
+        onChange={(event, newValue) => onChange?.(newValue?.value || "")}
         size="small"
         className={className}
         sx={{
