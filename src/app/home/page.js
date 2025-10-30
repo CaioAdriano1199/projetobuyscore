@@ -3,6 +3,7 @@ import { useState } from "react";
 import Sidemenu from "../components/sidemenu/sidemenu";
 import Telapontuacao from "../components/telapontuacao/telapontuacao";
 import Telaestatistica from "../components/telaestatistica/telaestatistica";
+import Telalojapontos from "../components/telalojapontos/telalojapontos";
 
 export default function Page() {
   const [currentView, setCurrentView] = useState("pontuacao");
@@ -17,6 +18,8 @@ export default function Page() {
         return <Telapontuacao />;
       case "estatisticas":
         return <Telaestatistica />;
+      case "Loja de pontos":  
+        return <Telalojapontos />;
       default:
         return <Telapontuacao />;
     }

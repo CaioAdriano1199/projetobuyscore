@@ -7,21 +7,62 @@ import { top100Films, ufs } from "../combobox/comboboxdata";
 import CameraButton from "../cameraButton/CameraButton";
 
 export default function CadastroForm() {
-    const [isFranqueado, setIsFranqueado] = useState(false);
-    const [razaoSocial, setRazaoSocial] = useState("");
-    const [nichoLoja, setNichoLoja] = useState("");
-    const [email, setEmail] = useState("");
-    const [celular, setCelular] = useState("");
-    const [cnpj, setCnpj] = useState("");
-    const [cep, setCep] = useState("");
-    const [logradouro, setLogradouro] = useState("");
-    const [numero, setNumero] = useState("");
-    const [cidade, setCidade] = useState("");
-    const [estado, setEstado] = useState("");
-    const [senha, setSenha] = useState("");
-    const [confirmarSenha, setConfirmarSenha] = useState("");
-    const [cnpjMatriz, setCnpjMatriz] = useState("");
-    const [codigoVerificacao, setCodigoVerificacao] = useState("");
+  const [isFranqueado, setIsFranqueado] = useState(false);
+  const [razaoSocial, setRazaoSocial] = useState("");
+  const [nichoLoja, setNichoLoja] = useState("");
+  const [email, setEmail] = useState("");
+  const [celular, setCelular] = useState("");
+  const [cnpj, setCnpj] = useState("");
+  const [cep, setCep] = useState("");
+  const [logradouro, setLogradouro] = useState("");
+  const [numero, setNumero] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [estado, setEstado] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [cnpjMatriz, setCnpjMatriz] = useState("");
+  const [codigoVerificacao, setCodigoVerificacao] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const dados = {
+      razaoSocial,
+      nichoLoja,
+      email,
+      celular,
+      cnpj,
+      cep,
+      logradouro,
+      numero,
+      cidade,
+      estado,
+      senha,
+      confirmarSenha,
+      isFranqueado,
+      cnpjMatriz,
+      codigoVerificacao,
+    };
+
+    try {
+      const res = await fetch("/api/cadastro", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados),
+      });
+
+      const result = await res.json();
+
+      if (result.paymentUrl) {
+        window.location.href = result.paymentUrl; // Redireciona para o link de pagamento
+      } else {
+        alert("Erro ao gerar pagamento: " + (result.error || "Resposta inválida"));
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao cadastrar!");
+    }
+  };
 
     return (
         <form className="grid grid-cols-6 gap-4">
