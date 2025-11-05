@@ -1,21 +1,45 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react"; // ✅ adicionar useEffect
 import Image from "next/image";
 import Button from "../button/button";
 
-export default function CameraButton() {
-  const [selectedImage, setSelectedImage] = useState(null);
+export default function CameraButton({
+  textolabel = "",
+  labelcolor = "branco",
+  initialImage = null,
+  onImageChange
+}) {
+  const [selectedImage, setSelectedImage] = useState(initialImage);
   const fileInputRef = useRef(null);
 
+  useEffect(() => {
+    setSelectedImage(initialImage); // atualiza imagem se mudar o produto
+  }, [initialImage]);
+
   const handleClick = () => fileInputRef.current.click();
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) setSelectedImage(URL.createObjectURL(file));
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setSelectedImage(url);
+      onImageChange && onImageChange(url); // atualiza no produto selecionado
+    }
+  };
+
+  const labelColors = {
+    azulclaro: "text-[var(--azulclaro)]",
+    azulescuro: "text-[var(--azulescuro)]",
+    branco: "text-[var(--branco)]",
+    cinza: "text-[var(--cinza)]",
+    preto: "text-[var(--preto)]",
   };
 
   return (
     <div className="flex flex-col items-center">
-      <label className="block mb-1 text-sm font-medium text-[rgb(227,227,227)] flex self-start">Logo</label>
+      <label className={`block mb-1 text-sm font-medium ${labelColors[labelcolor] || labelColors.branco} flex self-start`}>
+        {textolabel}
+      </label>
       <Button
         type="button"
         onClick={handleClick}

@@ -40,7 +40,7 @@ export default function Button({
       className={`${baseStyles} ${variants[variant]} ${disabled || loading ? "opacity-50 cursor-not-allowed" : ""
         } ${className}`}
     >
-      {loading ? "Carregando..." : children}
+      {children}
     </button>
   );
 }

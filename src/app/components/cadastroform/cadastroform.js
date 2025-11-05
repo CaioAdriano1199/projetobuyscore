@@ -85,7 +85,7 @@ export default function CadastroForm() {
             </div>
 
             <div className="flex justify-center items-center col-span-4">
-                <CameraButton />
+                <CameraButton textolabel="Logo" />
             </div>
 
             <label className="flex items-center gap-2 text-[rgb(227,227,227)] col-span-4 mt-2">

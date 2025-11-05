@@ -1,75 +1,74 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-export default function Modal({ 
-  isOpen, 
-  onClose, 
-  title, 
-  children, 
-  width = 'max-w-lg', // Largura padrão, mas pode ser personalizada
-  showCloseButton = true, // Opcional: mostrar ou não o botão de fechar
-  className = '' // Classes adicionais para personalização
+export default function Modal({
+  isOpen,
+  onClose,
+  title,
+  children,
+  width = "max-w-lg",       
+  showCloseButton = true,   
+  className = "",           
 }) {
-  // Fecha o modal quando pressiona ESC
+  // Fecha o modal ao apertar ESC
   useEffect(() => {
     const handleEscapeKey = (e) => {
-      if (e.key === 'Escape' && isOpen) {
+      if (e.key === "Escape" && isOpen) {
         onClose();
       }
     };
 
-    document.addEventListener('keydown', handleEscapeKey);
-    return () => document.removeEventListener('keydown', handleEscapeKey);
+    document.addEventListener("keydown", handleEscapeKey);
+    return () => document.removeEventListener("keydown", handleEscapeKey);
   }, [isOpen, onClose]);
 
-  // Previne scroll do body quando modal está aberto
+  // Bloqueia scroll do body
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto">
-      {/* Overlay com efeito de blur */}
-      <div 
-        className="fixed inset-0 bg-black bg-opacity-99 backdrop-blur-sm transition-opacity"
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Overlay */}
+      <div
+        className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
-      
+
       {/* Container do Modal */}
-      <div className="flex min-h-screen items-center justify-center p-4">
-        <div 
-          className={`relative bg-white rounded-lg shadow-xl ${width} w-full ${className}`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Cabeçalho do Modal */}
-          <div className="flex items-center justify-between p-4">
+      <div
+        className={`relative bg-white rounded-lg shadow-xl w-full ${width} ${className}`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Cabeçalho */}
+        <div className="flex items-center justify-between p-4">
+          {title && (
             <h3 className="text-xl text-[var(--azulescuro)] text-center w-full">
               {title}
             </h3>
-            {showCloseButton && (
-              <button
-                onClick={onClose}
-                className="absolute right-4 top-4 text-[var(--azulescuro)] text-xl font-bold hover:text-[var(--azulclaro)] focus:outline-none"
-              >
-                X
-              </button>
-            )}
-          </div>
+          )}
 
-          {/* Conteúdo do Modal */}
-          <div className="p-6">
-            {children}
-          </div>
+          {showCloseButton && (
+            <button
+              onClick={onClose}
+              className="absolute right-4 top-4 text-[var(--azulescuro)] text-xl font-bold hover:text-[var(--azulclaro)] focus:outline-none"
+            >
+              X
+            </button>
+          )}
         </div>
+
+        {/* Conteúdo */}
+        <div className="p-6">{children}</div>
       </div>
     </div>
   );
