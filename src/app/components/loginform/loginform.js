@@ -25,7 +25,7 @@ export default function LoginForm() {
         console.log("Token:", data.token);
         localStorage.setItem("token", data.token);
         // Aqui você pode redirecionar o usuário:
-        // router.push("/dashboard");
+        router.push("/home");
       } else {
         setMensagem(data.mensagem || "Erro no login");
       }
@@ -66,7 +66,6 @@ export default function LoginForm() {
            aqui!
         </a>
       </p>
-      <p>{mensagem}</p>
     </form>
   );
 }

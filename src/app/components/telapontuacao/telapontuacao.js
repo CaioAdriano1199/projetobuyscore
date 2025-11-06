@@ -9,8 +9,29 @@ export default function Telapontuacao() {
   const [valorCompra, setValorCompra] = useState("");
   const [pontuacaoGerada, setPontuacaoGerada] = useState("(codigo)");
 
-  const handleGerarPontuacao = () => {
-    // Aqui você pode adicionar a lógica para calcular a pontuação
+  const handleGerarPontuacao = async () => {
+        try {
+      const res = await fetch("/api/gerar-pontos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ valorCompra }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data?.mensagem ?? "Erro ao gerar pontuação");
+        return;
+      }
+
+      setPontuacaoGerada(data?.codigo ?? "Código não encontrado");
+
+      setIsModalOpen(true);
+
+    } catch (e) {
+      console.error(e);
+      alert("Erro ao gerar pontuação");
+    }
 
     setIsModalOpen(true);
   };
