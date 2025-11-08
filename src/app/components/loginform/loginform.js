@@ -24,7 +24,6 @@ export default function LoginForm() {
         setMensagem("Login realizado com sucesso!");
         console.log("Token:", data.token);
         localStorage.setItem("token", data.token);
-        // Aqui você pode redirecionar o usuário:
         router.push("/home");
       } else {
         setMensagem(data.mensagem || "Erro no login");

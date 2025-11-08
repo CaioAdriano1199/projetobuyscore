@@ -10,31 +10,34 @@ export default function Telapontuacao() {
   const [pontuacaoGerada, setPontuacaoGerada] = useState("(codigo)");
 
   const handleGerarPontuacao = async () => {
-        try {
-      const res = await fetch("/api/gerar-pontos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ valorCompra }),
-      });
+  try {
+    const token = localStorage.getItem("token");   // ✅ pega token (exemplo)
 
-      const data = await res.json();
+    const res = await fetch("/api/gerarpontos", {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,          // ✅ envia token
+      },
+      body: JSON.stringify({ valorCompra }),
+    });
 
-      if (!res.ok) {
-        alert(data?.mensagem ?? "Erro ao gerar pontuação");
-        return;
-      }
+    const data = await res.json();
 
-      setPontuacaoGerada(data?.codigo ?? "Código não encontrado");
-
-      setIsModalOpen(true);
-
-    } catch (e) {
-      console.error(e);
-      alert("Erro ao gerar pontuação");
+    if (!res.ok) {
+      alert(data?.mensagem ?? "Erro ao gerar pontuação");
+      return;
     }
 
+    setPontuacaoGerada(data?.codigo ?? "Código não encontrado");
     setIsModalOpen(true);
-  };
+
+  } catch (e) {
+    console.error(e);
+    alert("Erro ao gerar pontuação");
+  }
+};
+
 
   return (
     <div className="p-8 flex items-center justify-center w-full flex-col">
