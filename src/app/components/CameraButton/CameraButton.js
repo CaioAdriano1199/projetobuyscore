@@ -18,14 +18,20 @@ export default function CameraButton({
 
   const handleClick = () => fileInputRef.current.click();
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setSelectedImage(url);
-      onImageChange && onImageChange(url); // atualiza no produto selecionado
-    }
-  };
+const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const url = URL.createObjectURL(file);
+    setSelectedImage(url);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result;
+      onImageChange && onImageChange(base64String);
+    };
+    reader.readAsDataURL(file);
+  }
+};
 
   const labelColors = {
     azulclaro: "text-[var(--azulclaro)]",

@@ -1,4 +1,4 @@
-import { bffRequest } from "../../../../lib/api";
+import { bffRequest } from "@/lib/api";
 
 export async function POST(req) {
   const body = await req.json();
@@ -6,7 +6,7 @@ export async function POST(req) {
   const token = req.headers.get("authorization");
 
   try {
-    const data = await bffRequest("/ponto", {
+    const data = await bffRequest("/produto", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {

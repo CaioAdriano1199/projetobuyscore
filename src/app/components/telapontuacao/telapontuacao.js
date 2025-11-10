@@ -11,13 +11,13 @@ export default function Telapontuacao() {
 
   const handleGerarPontuacao = async () => {
   try {
-    const token = localStorage.getItem("token");   // ✅ pega token (exemplo)
+    const token = localStorage.getItem("token");  
 
     const res = await fetch("/api/gerarpontos", {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,          // ✅ envia token
+        Authorization: `Bearer ${token}`,         
       },
       body: JSON.stringify({ valorCompra }),
     });
